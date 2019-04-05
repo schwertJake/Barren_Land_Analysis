@@ -2,7 +2,7 @@
 
 class BarrenLandSimple:
 
-    def __init__(self, coord_arr: list, x_max=400, y_max=400):
+    def __init__(self, coord_arr: list, x_max=400, y_max=600):
         self.x_max = x_max
         self.y_max = y_max
         self.plot = self._create_plot(x_max, y_max)
@@ -149,13 +149,3 @@ class BarrenLandSimple:
                 }
             )
         return coord_list
-
-
-if __name__ == "__main__":
-    raw_coords = ["48 192 351 207",
-                  "48 392 351 407",
-                  "120 52 135 547",
-                  "260 52 275 547"]
-    land = BarrenLandSimple(raw_coords, 400, 600)
-    print("STARTING BFS")
-    print("RESULTS:", land.find_all_fertile_areas())
