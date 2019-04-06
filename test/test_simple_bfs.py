@@ -19,7 +19,7 @@ class TestCreatePlot(unittest.TestCase):
 class TestBuildCoordList(unittest.TestCase):
 
     def test_single_coord_list(self):
-        BLS = BarrenLandSimple([0, 5, 5, 10])
+        BLS = BarrenLandSimple([[0, 5, 5, 10]])
         self.assertEqual(
             BLS._coord_list, [{
                 'x0': 0,

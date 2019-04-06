@@ -6,7 +6,7 @@ from barren_land_graph.barren_land import BarrenLand
 class TestCreateNode(unittest.TestCase):
 
     def setUp(self):
-        self.BLG_one = BarrenLandGraph([[0, 292, 399, 307]]).nodes
+        self.BLG_one = BarrenLandGraph([[0, 292, 399, 307]])
         self.BLG_many = BarrenLandGraph(
             [[48, 192, 351, 207],
              [48, 392, 351, 407],
