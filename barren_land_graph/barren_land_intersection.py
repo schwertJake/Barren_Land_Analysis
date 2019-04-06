@@ -1,3 +1,10 @@
+"""
+barren_land_intersection.py
+This module is the edge object for the graph of barren land
+plots. It takes two barren land (vertex) objects, checks for
+an intersecting area, and stores the intersection area if there
+is one.
+"""
 from barren_land_graph.barren_land import BarrenLand
 
 
@@ -8,8 +15,9 @@ class BarrenIntersection:
         self.land_indexes = (index0, index1)
         self._land0 = land0
         self._land1 = land1
-        self.coord_dict = {}
-        self.intersection_area, self.intersects = self._compute_intersection_2d()
+        self.coord_dict = {}  # corner coords of intersection rectangle
+        self.intersection_area, self.intersects = \
+            self._compute_intersection_2d()
 
     def _compute_intersection_2d(self) -> (int, bool):
         """
@@ -32,7 +40,7 @@ class BarrenIntersection:
         return (x_max - x_min) * (y_max - y_min), \
                x_inter_bool and y_inter_bool
 
-    def _compute_intersection_1d(self, dimenion_mask: str) -> (int, int, bool):
+    def _compute_intersection_1d(self, dimension_mask: str) -> (int, int, bool):
         """
         Computes the distance of intersection of two lines in one
         dimension. Does this by first making sure the min and max of
@@ -40,13 +48,13 @@ class BarrenIntersection:
         cases of how two lines may intersect, and computing the answer given
         that case.
 
-        :param dimenion_mask: mask of dimension of lines, 'x' or 'y'
+        :param dimension_mask: mask of dimension of lines, 'x' or 'y'
         :return: (int, bool)
         """
-        l0_min = self._land0.coord_dict[dimenion_mask+'0']
-        l0_max = self._land0.coord_dict[dimenion_mask+'1']
-        l1_min = self._land1.coord_dict[dimenion_mask+'0']
-        l1_max = self._land1.coord_dict[dimenion_mask+'1']
+        l0_min = self._land0.coord_dict[dimension_mask+'0']
+        l0_max = self._land0.coord_dict[dimension_mask+'1']
+        l1_min = self._land1.coord_dict[dimension_mask+'0']
+        l1_max = self._land1.coord_dict[dimension_mask+'1']
 
         # Make sure coordinates are in the right order:
         if l0_min > l0_max:
@@ -76,4 +84,5 @@ class BarrenIntersection:
             return l1_max, l0_min, True
 
         # If we got here, something went horribly wrong
-        return -1, -1, None  # Should throw exception
+        raise Exception("Couldn't compute intersection of",
+                        self.land_indexes)

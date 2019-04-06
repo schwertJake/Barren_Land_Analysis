@@ -1,4 +1,10 @@
-import sys
+"""
+barren_land.py
+This module is the vertex objects for the graph
+that will be created from the barren land plots.
+The vertex contains coordinates and total area.
+"""
+
 
 class BarrenLand:
 
@@ -26,11 +32,11 @@ class BarrenLand:
 
     def _assign_coordinates(self, coord_arr: list) -> dict:
         """
-        Takes the raw input string of form "X0 Y0 X1 Y1"
+        Takes the raw input list of ints of form [X0 Y0 X1 Y1]
         for the rectangle, and assigns to self.coord_dict via
         self.coord_map
 
-        :param coord_str: string of coordinates
+        :param coord_str: list of coordinates
         :return: none
         """
         ret_dict = {}
@@ -45,6 +51,6 @@ class BarrenLand:
         Returns a dictionary with coordinates and visualization
         properties to be displayed via Plotly
 
-        :return:
+        :return: dict or plotly display attributes
         """
         return self.coord_dict.update(self._plotly_viz_attr)
