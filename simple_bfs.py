@@ -139,13 +139,12 @@ class BarrenLandSimple:
         """
         coord_list = []
         for coords in raw_coord_list:
-            coords = coords.split(" ")
             coord_list.append(
                 {
-                    "x0": int(coords[0]),
-                    "y0": int(coords[1]),
-                    "x1": int(coords[2]),
-                    "y1": int(coords[3])
+                    "x0": coords[0],
+                    "y0": coords[1],
+                    "x1": coords[2],
+                    "y1": coords[3]
                 }
             )
         return coord_list
