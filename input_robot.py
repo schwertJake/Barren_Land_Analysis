@@ -18,16 +18,10 @@ class InputRobot:
         "When I finish my calculations, would you like me to draw " \
         "the plots for you? (y/n)"
 
-    algo_message = \
-        "Great. And finally, we have an experimental algorithm " \
-        "that speeds things up\n" \
-        "Would you like to use it? (y/n)"
-
     def __init__(self):
         self.x, self.y = self._get_plot_size()
         self.coordinates = self._get_barren_coordinates()
         self.visualizations = self._get_visualization_method()
-        self.simple_algo = self._get_algo()
         self._recap()
 
     def _get_plot_size(self) -> (int, int):
@@ -89,6 +83,7 @@ class InputRobot:
             except ValueError:
                 print("It doesn't quite line up - try again and follow "
                       "the format! \"x0 y0 x1 y1\"")
+        print("COORDS", coordinates)
         return coordinates
 
     def _get_visualization_method(self) -> bool:
@@ -102,18 +97,6 @@ class InputRobot:
         """
         print(self.visualization_message)
         return self._get_answer_y_n()
-
-    def _get_algo(self) -> bool:
-        """
-        Asks the user if they'd like to use the experimental
-        fast algorithm. They can responds y or n. The returned
-        bool is the not of their answer because it will be stored
-        in a variable called simple_algo
-
-        :return: True (n) or False (y)
-        """
-        print(self.algo_message)
-        return not self._get_answer_y_n()
 
     def _get_answer_y_n(self) -> bool:
         """
@@ -152,12 +135,8 @@ class InputRobot:
             print("You will be visualizing the data")
         else:
             print("You will not be visualizing the data")
-        if not self.simple_algo:
-            print("You will be using the experimental algo")
-        else:
-            print("You will not be using the experimental algo")
         print(".\n.\n.")
-        print("And awaaayyyy we go!")
+        print("And awaaayyyy we go!\n")
 
 
 if __name__ == "__main__":
