@@ -27,7 +27,7 @@ class BarrenIntersection:
             "x0": x_min,
             "y0": y_min,
             "x1": x_max,
-            "y1": x_min
+            "y1": y_max
         }
         return (x_max - x_min) * (y_max - y_min), \
                x_inter_bool and y_inter_bool
@@ -76,4 +76,4 @@ class BarrenIntersection:
             return l1_max, l0_min, True
 
         # If we got here, something went horribly wrong
-        return -1, None  # Should throw exception
+        return -1, -1, None  # Should throw exception

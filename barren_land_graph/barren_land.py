@@ -1,3 +1,5 @@
+import sys
+
 class BarrenLand:
 
     _coord_map = {
@@ -16,10 +18,10 @@ class BarrenLand:
         'fillcolor': 'rgba(255, 69, 0, 0.7)'
     }
 
-    def __init__(self, coord_arr: list, index):
+    def __init__(self, coord_arr: list, index: int):
         self.coord_dict = self._assign_coordinates(coord_arr)
         self.index = index  # index in list of barren land object
-        self.area = (self.coord_dict['x1'] - self.coord_dict['x0'])  * \
+        self.area = (self.coord_dict['x1'] - self.coord_dict['x0']) * \
                     (self.coord_dict['y1'] - self.coord_dict['y0'])
 
     def _assign_coordinates(self, coord_arr: list) -> dict:

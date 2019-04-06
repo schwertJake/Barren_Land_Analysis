@@ -19,7 +19,7 @@ class TestCreatePlot(unittest.TestCase):
 class TestBuildCoordList(unittest.TestCase):
 
     def test_single_coord_list(self):
-        BLS = BarrenLandSimple(["0 5 5 10"])
+        BLS = BarrenLandSimple([0, 5, 5, 10])
         self.assertEqual(
             BLS._coord_list, [{
                 'x0': 0,
@@ -30,8 +30,8 @@ class TestBuildCoordList(unittest.TestCase):
         )
 
     def test_multiple_coord_list(self):
-        BLS = BarrenLandSimple(["0 10 10 20",
-                                 "5 25 25 50"])
+        BLS = BarrenLandSimple([[0, 10, 10, 20],
+                                 [5, 25, 25, 50]])
         self.assertEqual(
             BLS._coord_list,[{
                 'x0': 0,
@@ -51,7 +51,7 @@ class TestBuildCoordList(unittest.TestCase):
 class TestPopulateBarrenLand(unittest.TestCase):
 
     def test_barren_land_plotted(self):
-        BLS = BarrenLandSimple(["0 2 2 3"], 3, 5)
+        BLS = BarrenLandSimple([[0, 2, 2, 3]], 3, 5)
         self.assertEqual(BLS.plot,
                          [[0]*3, [0]*3, [-1]*3, [-1]*3, [0]*3])
 
@@ -67,11 +67,11 @@ class TestBFS(unittest.TestCase):
         self.assertEqual(empty_large_BLS._bfs(0,0), 240000)
 
     def test_starting_barren_land(self):
-        barren_BLS = BarrenLandSimple(["0 3 4 4"], 5, 5)
+        barren_BLS = BarrenLandSimple([[0, 3, 4, 4]], 5, 5)
         self.assertEqual(barren_BLS._bfs(0,3), 0)
 
     def test_running_into_barren(self):
-        barren_BLS = BarrenLandSimple(["0 4 4 5"], 5, 10)
+        barren_BLS = BarrenLandSimple([[0, 4, 4, 5]], 5, 10)
         self.assertEqual(barren_BLS._bfs(0,0), 20)
 
 class TestFindAllFertileArea(unittest.TestCase):
@@ -81,14 +81,14 @@ class TestFindAllFertileArea(unittest.TestCase):
         self.assertEqual(BLS.find_all_fertile_areas(), [240000])
 
     def test_example_case_1(self):
-        BLS = BarrenLandSimple(["0 292 399 307"])
+        BLS = BarrenLandSimple([[0, 292, 399, 307]])
         self.assertEqual(BLS.find_all_fertile_areas(), [116800, 116800])
 
     def test_example_case_2(self):
-        BLS = BarrenLandSimple(["48 192 351 207",
-                                "48 392 351 407",
-                                "120 52 135 547",
-                                "260 52 275 547"])
+        BLS = BarrenLandSimple([[48, 192, 351, 207],
+                                [48, 392, 351, 407],
+                                [120, 52, 135, 547],
+                                [260, 52, 275, 547]])
         self.assertEqual(BLS.find_all_fertile_areas(), [22816, 192608])
 
 if __name__ == '__main__':

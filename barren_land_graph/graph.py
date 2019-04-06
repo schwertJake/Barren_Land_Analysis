@@ -81,10 +81,3 @@ class BarrenLandGraph:
     def rotate_to_smallest(path):
         n = path.index(min(path))
         return path[n:] + path[:n]
-
-
-if __name__ == "__main__":
-    BarrenLandGraph(["48 192 351 207",
-                     "48 392 351 407",
-                     "120 52 135 547",
-                     "260 52 275 547"])
