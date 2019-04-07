@@ -23,7 +23,7 @@ Output all the fertile land area in square meters, sorted from smallest area to 
 ## Problem Solving Process
 First thing's first - as a very visual person, I needed to see what exactly these barren land plots looked like. After some quick tinkering with python's plotly, here is a visualization of sample case 2:
 
-![alt text](https://github.com/schwertJake/Barren_Land_Analysis/blob/master/imgs/viz_case_2.PNG "Logo Title Text 1")
+![alt text](https://github.com/schwertJake/Barren_Land_Analysis/blob/master/imgs/viz_case_2.PNG "")
 
 So looking at this, it's clear that the fertile land plots we're looking for aren't always nice rectangle, but can be quite irregular. Reasoning with geometry will be messy and not work with all cases, so my first idea is to do a Breadth-First-Search style traversal over the entire grid.
 
@@ -53,11 +53,11 @@ The idea of BFS got me thinking about using it in a different way. What if...the
 
 So for the example visualized above:
 
-![alt text](https://github.com/schwertJake/Barren_Land_Analysis/blob/master/imgs/viz_case_2_graph_labels.png "Logo Title Text 1")
+![alt text](https://github.com/schwertJake/Barren_Land_Analysis/blob/master/imgs/viz_case_2_graph_labels.png "")
 
 Becomes an undirected graph:
 
-![alt text](https://github.com/schwertJake/Barren_Land_Analysis/blob/master/imgs/viz_case_2_graph.png "Logo Title Text 1")
+![alt text](https://github.com/schwertJake/Barren_Land_Analysis/blob/master/imgs/viz_case_2_graph.png "")
 
 With this general idea in mind, I devised the following algorithm:
 1. Create vertex objects for each barren land rectangle and one for each border
@@ -90,3 +90,22 @@ To run this program, you must have on your local machine:
 Navigate to the main directory, and run main.py. This will start the program which begins with text prompts on the command line.
 
 An example of the program running:
+
+![alt text](https://github.com/schwertJake/Barren_Land_Analysis/blob/master/imgs/execution.gif "")
+
+### Results
+The last ~10 lines of the program output give the barren land plot size and execution times for each algorithm. For sample case 2, the results are:
+
+```
+--- Using Simple Algo ---
+Fertile Land Plots:
+22816 192608 
+Process Time (ms): 1017.990827560424805
+
+--- Using Graphing Algo ---
+Fertile Land Plots:
+22816 192608 
+Process Time (ms): 1.996278762817383
+```
+
+So, interestingly though rather unsuprisingly, the graphing algorithm is an order of magnitude faster.
