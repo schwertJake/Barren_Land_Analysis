@@ -1,9 +1,5 @@
 # Barren Land Analysis
 
-##### Table of Contents  
-[Background](#Background)  
-[Sample Cases](#SampleCases)
-
 ## Background
 As part of the interview process for a minneapolis based company, I was asked to pick one of three technical problems and engineer a solution with the technology of my choosing. I chose the second option, titled "Barren Land Analysis". The problem requirements, engineering process, and solution are below.
 ## Problem Requirements
