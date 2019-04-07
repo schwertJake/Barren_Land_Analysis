@@ -1,4 +1,9 @@
 # Barren Land Analysis
+
+##### Table of Contents  
+[Background](#Background)  
+[Sample Cases](#SampleCases)
+
 ## Background
 As part of the interview process for a minneapolis based company, I was asked to pick one of three technical problems and engineer a solution with the technology of my choosing. I chose the second option, titled "Barren Land Analysis". The problem requirements, engineering process, and solution are below.
 ## Problem Requirements
@@ -15,7 +20,7 @@ You are given a set of rectangles that contain the barren land. These rectangles
 Output
 
 Output all the fertile land area in square meters, sorted from smallest area to greatest, separated by a space.
-## Samples Cases
+## Sample Cases
 |Sample Input|Sample Output|
 |---|---|
 |“0 292 399 307”}|116800 116800|
@@ -34,20 +39,20 @@ My idea for finding the continuous fertile land plots works essentially like thi
 3. Starting at (0,0), increment x value until a 0 entry is found. (Increment y value if x = 399, and reset x to 0)
 4. Place that coordinate in empty queue and perform a BFS as follows:
     1. If current value is not 0, grab next coordinate from Queue
-    2. If current value is 0, increment area_count by 1
+    2. If current value is 0, increment area_count by 1 and mark entry as 1
     3. Add surrounding (in all 4 directions) coordinates to Queue
     4. Continue until queue is empty. This incremented count is the total continuous fertile area of this plot.
 5. Once the bfs is done, continue to loop through the entire 2D array to see if there are any isolated fertile plots.
 6. Process ends when all coordinates have been checked
 
-This is a rather brute force approach in that it is O(X*Y), as well as O(X*Y) memory. 
+This is a rather brute force approach in that it is O(X\*Y), as well as O(X\*Y) memory. 
 
 That said, the wording of this problem leads me to believe this is the desired solution as it specifically limits the size of the total area, and indexes the field in array style (0,0) to (399,399).
 
 **However**, this didn't sit right with me. It's a quick and dirty solution that solves the immediate problem but won't scale well at all. This will be evident in the solution testing further down the page. This brings me to my second idea...
 
 ### Geometric Graphing Algorithm
-Indulge me, if you will, on my wild musings about solving this problem for a general solution in constant time and space..
+Indulge me, if you will, on my wild musings about solving this problem for a general solution in (nearly) constant time and space..
 
 The idea of BFS got me thinking about using it in a different way. What if...the Barren Land plots were vertexes, and their intersections were edges? If that were the case, anytime you had a cycle of >= 4 nodes in the graph, you have a border of barren land that encloses fertile land. Allow me to illustrate:
 
@@ -59,6 +64,8 @@ Becomes an undirected graph:
 
 ![alt text](https://github.com/schwertJake/Barren_Land_Analysis/blob/master/imgs/viz_case_2_graph.png "")
 
+Because X\*Y >> # of Barren Plots, this method will be significantly faster.
+
 With this general idea in mind, I devised the following algorithm:
 1. Create vertex objects for each barren land rectangle and one for each border
 2. For each vertex, compare to all others to find valid edges
@@ -69,7 +76,7 @@ With this general idea in mind, I devised the following algorithm:
 6. Sum all of the fertile land plots, find the remaining area by total_area - sum(fertile_land_plots) - barren_land(adjusting for intersection area).
 7. This should leave a list of all fertile land plots.
 
-\* Note: This computation is the crux of the algorithm. Finding the area bordered by 4 rectangles is trivial, but generalized to N rectangles of all shapes and sizes requires complex geometric reasoning (that I struggled with). This program will analyze borders of 4 rectangles with this algorithm, but if there are more complicated borders, the simpler algorithm must be used.
+\* Note: This computation is the crux of the algorithm. Finding the area bordered by 4 rectangles is trivial, but generalized to N rectangles of all shapes and sizes requires complex geometric reasoning (that I struggled with). The algorithm in the software is just a first pass and doesn't handle all cases, including cycles that are geometrically fully within another cycle, or cycles of length > 4. I believe that these cases can be handled given enough time and thought, however _this program will only analyze borders of 4 rectangles with this algorithm; if there are more complicated borders, this algorithm cannot be used._ It was included solely as an intellectual exercise and expansion upon the problem.
 
 ## Solution
 
@@ -106,6 +113,20 @@ Process Time (ms): 1017.990827560424805
 Fertile Land Plots:
 22816 192608 
 Process Time (ms): 1.996278762817383
+```
+
+The divide grows even worse when the size of the plot increases. For example, here is a (4000, 6000) plot with a single barren rectangle of coordinates [0, 2920, 3999, 3070]
+
+```
+--- Using Simple Algo ---
+Fertile Land Plots:
+11680000 11716000 
+Process Time (ms): 193952.230691909790039
+
+--- Using Graphing Algo ---
+Fertile Land Plots:
+11680000 11716000 
+Process Time (ms): 0.000000000000000
 ```
 
 So, interestingly though rather unsuprisingly, the graphing algorithm is an order of magnitude faster.
