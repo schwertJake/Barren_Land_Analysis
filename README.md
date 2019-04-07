@@ -72,3 +72,21 @@ With this general idea in mind, I devised the following algorithm:
 \* Note: This computation is the crux of the algorithm. Finding the area bordered by 4 rectangles is trivial, but generalized to N rectangles of all shapes and sizes requires complex geometric reasoning (that I struggled with). This program will analyze borders of 4 rectangles with this algorithm, but if there are more complicated borders, the simpler algorithm must be used.
 
 ## Solution
+
+### Code Structure
+I opted to impliment both algorithms - you can find them in the source code at:
+* Simple Algorithm - BFS : simple_bfs.py
+* Geometric Graphing Algorithm : barren_land_graph package
+
+The algorithms are strung together and fed input by main.py and input_robot.py
+
+Basic unit testing happens in the test/ directory and has 90% code coverage, not including main and input_robot.
+
+### Execution
+To run this program, you must have on your local machine:
+* Python 3
+* Plotly library (pip install plotly) installed and setup
+
+Navigate to the main directory, and run main.py. This will start the program which begins with text prompts on the command line.
+
+An example of the program running:
