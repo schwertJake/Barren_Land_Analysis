@@ -1,4 +1,4 @@
-# Barren_Land_Analysis
+# Barren Land Analysis
 ## Background
 As part of the interview process for a minneapolis based company, I was asked to pick one of three technical problems and engineer a solution with the technology of my choosing. I chose the second option, titled "Barren Land Analysis". The problem requirements, engineering process, and solution are below.
 ## Problem Requirements
@@ -47,3 +47,8 @@ That said, the wording of this problem leads me to believe this is the desired s
 **However**, this didn't sit right with me. It's a quick and dirty solution that solves the immediate problem but won't scale well at all. This will be evident in the solution testing further down the page. This brings me to my second idea...
 
 ### Geometric Graphing Algorithm
+Indulge me, if you will, on my wild musings about solving this problem for a general solution in constant time and space..
+
+The idea of BFS got me thinking about using it in a different way. What if...the Barren Land plots were vertexes, and their intersections were edges? If that were the case, anytime you had a cycle of >= 4 nodes in the graph, you have a border of barren land that encloses fertile land. Allow me to illustrate:
+
+So for the example visualized above:
