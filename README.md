@@ -48,9 +48,9 @@ That said, the wording of this problem leads me to believe this is the desired s
 **However**, this didn't sit right with me. It's a quick and dirty solution that solves the immediate problem but won't scale well at all. This will be evident in the solution testing further down the page. This brings me to my second idea...
 
 ### Geometric Graphing Algorithm
-Indulge me, if you will, on my wild musings about solving this problem for a general solution in (nearly) constant time and space..
+Indulge me, if you will, on my wild musings about solving this problem for a general solution where the time and space complexity is relative to the number of barren land plots..
 
-The idea of BFS got me thinking about using it in a different way. What if...the Barren Land plots were vertexes, and their intersections were edges? If that were the case, anytime you had a cycle of >= 4 nodes in the graph, you have a border of barren land that encloses fertile land. Allow me to illustrate:
+The idea of BFS got me thinking about using it in a different way. What if the barren land plots were vertexes, and their intersections were edges? If that were the case, anytime you had a cycle of >= 4 nodes in the graph, you have a border of barren land that encloses fertile land. Allow me to illustrate:
 
 So for the example visualized above:
 
