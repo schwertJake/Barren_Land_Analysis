@@ -16,12 +16,12 @@ class BarrenLand:
     }
 
     _plotly_viz_attr = {
-        'type': 'rect',
-        'line': {
-            'color': 'rgba(255, 69, 0, 1)',
-            'width': 2,
+        "type": "rect",
+        "line": {
+            "color": "rgba(255, 69, 0, 1)",
+            "width": 2,
         },
-        'fillcolor': 'rgba(255, 69, 0, 0.7)'
+        "fillcolor": "rgba(255, 69, 0, 0.7)"
     }
 
     def __init__(self, coord_arr: list, index: int):
@@ -53,4 +53,4 @@ class BarrenLand:
 
         :return: dict or plotly display attributes
         """
-        return self.coord_dict.update(self._plotly_viz_attr)
+        return dict(**self.coord_dict, **self._plotly_viz_attr)

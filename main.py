@@ -2,6 +2,7 @@ from time import time
 from input_robot import InputRobot
 from simple_bfs import BarrenLandSimple
 from barren_land_graph.field import Field
+import visualizations
 
 
 if __name__ == '__main__':
@@ -29,3 +30,12 @@ if __name__ == '__main__':
     for plot in result:
         print(plot, end=" ")
     print("\nProcess Time (ms): {0:.15f}".format((end - start)*1000))
+
+    viz_nodes = []
+    if params.visualizations:
+        for node in graph.graph.nodes:
+            viz_nodes.append(node.display())
+        try:
+            visualizations.visualize(params.x, params.y, viz_nodes)
+        except ImportError:
+            print("Please install Plotly to visualize!")
